@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* GenLayer Brand Guidelines 2025 - Typography
+   --font-body: Inter (Switzer alternative)
+   --font-display: Space Grotesk (Lineca alternative)
+*/
+@custom-variant dark (&:is(.dark));
+
+:root {
+  /* Base colors - deep forensic black background */
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.98 0 0);
+
+  /* Cards with navy tint per brand guidelines */
+  --card: oklch(0.25 0.08 265);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.25 0.08 265);
+  --popover-foreground: oklch(0.98 0 0);
+
+  /* Primary: Purple-Pink Gradient (#9B6AF6 → #E37DF7) */
+  --primary: oklch(0.65 0.22 300);
+  --primary-foreground: oklch(0.98 0 0);
+
+  /* Secondary: Navy Blue (#282B5D) */
+  --secondary: oklch(0.25 0.08 265);
+  --secondary-foreground: oklch(0.98 0 0);
+
+  /* Muted states */
+  --muted: oklch(0.18 0.04 265);
+  --muted-foreground: oklch(0.55 0 0);
+
+  /* Accent: Purple (brand primary) */
+  --accent: oklch(0.65 0.22 300);
+  --accent-foreground: oklch(0.98 0 0);
+
+  /* Brand Blue: #110FFF */
+  --blue: oklch(0.55 0.37 265);
+  --blue-foreground: oklch(0.98 0 0);
+
+  /* Brand Pink: #E37DF7 */
+  --pink: oklch(0.78 0.18 330);
+
+  /* Destructive remains red */
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  /* Borders and inputs with navy tint */
+  --border: oklch(0.25 0.08 265);
+  --input: oklch(0.20 0.06 265);
+  --ring: oklch(0.65 0.22 300);
+
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply text-foreground;
+    font-family: var(--font-body), sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), var(--font-body), sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+
+  /* Animations for modern UI feel */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* GenLayer Forensic Card Style */
+  .brand-card {
+    background: oklch(0.25 0.08 265 / 0.6);
+    border: 1px solid oklch(0.30 0.10 265 / 0.4);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+  }
+
+  .brand-card-hover:hover {
+    border-color: oklch(0.65 0.22 300 / 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* Primary Button - Action Gradient */
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, oklch(0.65 0.22 300) 0%, oklch(0.78 0.18 330) 100%);
+    color: oklch(0.98 0 0);
+    font-weight: 500;
+    border: none;
+    transition: all 0.2s ease;
+  }
+}
+
+
+html {
+  min-height: 100vh !important;
+  /* This keeps the dark brand colors but adds your image on top */
+  background-color: #000000 !important;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -20%, oklch(0.65 0.22 300 / 0.15) 0%, transparent 70%),
+    url('/my-bg.jpg');
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
